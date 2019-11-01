@@ -31,18 +31,23 @@
         // PaperScript does that for us, and much more!
         path.lineTo(start + [ 100, -50 ]);
 
-        for (var x = 0; x <= 1000; x += 100) {
-                var blue = x/10 + 60;
-                var color = 'rgb(0,0,' + blue + ')'
-            for (var y = 0; y <= 1000; y += 100) {
-                myCircle = new Path.Circle(new Point(x, y), 10).fillColor = color;
-            }
-        }
+        // EXERCISE - grid
+        // for (var x = 0; x <= 1000; x += 100) {
+        //         var blue = x/10 + 60;
+        //         var color = 'rgb(0,0,' + blue + ')'
+        //     for (var y = 0; y <= 1000; y += 100) {
+        //         myCircle = new Path.Circle(new Point(x, y), 10).fillColor = color;
+        //     }
+        // }
 
+        function onKeyDown(event) {
+            var maxPoint = new Point(view.size.width, view.size.height);
+            var randomPoint = Point.random();
+            var point = maxPoint * randomPoint;
+            myCircle = new Path.Circle(point, 30).fillColor = "steelblue";
+        }
         // var myCircle2 = new Path.Circle(new Point(300, 300), 200);
         // myCircle2.fillColor = 'purple';
-
-
     </script>
     
     <link rel="stylesheet" href="styles.css">
