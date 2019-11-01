@@ -17,34 +17,27 @@
     <script src="paper-full.js" type="text/javascript"></script>
     
     <script type="text/paperscript" canvas="myCanvas">
-        // Create a Paper.js Path to draw a line into it:
-        var path = new Path();
+        // Keeps track of the circles we create
+        var circles = [];
 
-        // Give the stroke a color
-        path.strokeColor = 'red';
-        var start = new Point(0, 0);
-
-        // Move to start and draw a line from there
-        path.moveTo(start);
-        
-        // Note the plus operator on Point objects.
-        // PaperScript does that for us, and much more!
-        path.lineTo(start + [ 100, -50 ]);
-
-        // EXERCISE - grid
-        // for (var x = 0; x <= 1000; x += 100) {
-        //         var blue = x/10 + 60;
-        //         var color = 'rgb(0,0,' + blue + ')'
-        //     for (var y = 0; y <= 1000; y += 100) {
-        //         myCircle = new Path.Circle(new Point(x, y), 10).fillColor = color;
-        //     }
-        // }
-
+        // Creates new circles and add them to the circles array
         function onKeyDown(event) {
             var maxPoint = new Point(view.size.width, view.size.height);
             var randomPoint = Point.random();
             var point = maxPoint * randomPoint;
-            myCircle = new Path.Circle(point, 30).fillColor = "steelblue";
+
+            myCircle = new Path.Circle(point, 300);
+            myCircle.fillColor = "steelblue"
+
+            circles.push(myCircle);
+        }
+
+        // Adds animation to each circle in the array
+        function onFrame(event) {
+            for (var i = 0; i < circles.length; i++){
+                circles[i].fillColor.hue += 1;
+                circles[i].scale(.95);
+            }
         }
         // var myCircle2 = new Path.Circle(new Point(300, 300), 200);
         // myCircle2.fillColor = 'purple';
@@ -57,3 +50,28 @@
     <canvas id="myCanvas" resize></canvas>
 </body>
 </html>
+
+<script>
+    // // Create a Paper.js Path to draw a line into it:
+    // var path = new Path();
+    
+    // // Give the stroke a color
+    // path.strokeColor = 'red';
+    // var start = new Point(0, 0);
+    
+    // // Move to start and draw a line from there
+    // path.moveTo(start);
+    
+    // // Note the plus operator on Point objects.
+    // // PaperScript does that for us, and much more!
+    // path.lineTo(start + [ 100, -50 ]);
+    
+    // EXERCISE - grid
+    // for (var x = 0; x <= 1000; x += 100) {
+    //         var blue = x/10 + 60;
+    //         var color = 'rgb(0,0,' + blue + ')'
+    //     for (var y = 0; y <= 1000; y += 100) {
+    //         myCircle = new Path.Circle(new Point(x, y), 10).fillColor = color;
+    //     }
+    // }
+</script>
